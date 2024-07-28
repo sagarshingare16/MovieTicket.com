@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MovieTicket</title>
+    <link rel="icon" type="image/x-icon" href="img/MovieTicket.png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/booking.css"/>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar">
+        <img src="img/MovieTicket.png" class="brand-logo" alt="" />
+        <div class="input">
+            <ion-icon name="search"></ion-icon>
+            <input class="search" placeholder="Search Movies" />
+        </div>
+
+        <div class="right-container">
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Location <ion-icon name="caret-down-sharp"></ion-icon>
+                </button>
+                <div class="dropdown-content" id="locationDropdown"></div>
+            </div>
+            <button
+                    class="signin"
+                    onclick="document.getElementById('id01').style.display='block'"
+            >
+                Login
+            </button>
+        </div>
+
+        <!-- Login Modal -->
+        <div id="id01" class="modal">
+            <form class="modal-content animate" action="/login" method="post">
+                <div class="container">
+                    <label for="uname"><b>Username</b></label>
+                    <input
+                            type="text"
+                            placeholder="Enter Username"
+                            name="uname"
+                            required
+                    />
+
+                    <label for="psw"><b>Password</b></label>
+                    <input
+                            type="password"
+                            placeholder="Enter Password"
+                            name="psw"
+                            required
+                    />
+
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div id="theater-container">
+        <div id="screen">Screen</div>
+        <div id="theater"></div>
+        <button id="book-button">Book Selected Seats</button>
+    </div>
+
+    <script src="js/booking.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>
