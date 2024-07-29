@@ -1,20 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Retrieve movie data from localStorage
-    const theaterDate = JSON.parse(localStorage.getItem('selectedTheter'));
+    const theaterData = JSON.parse(localStorage.getItem('selectedTheater'));
 
-    if (!theaterDate) {
+    if (!theaterData) {
         alert('No movie data found.');
-        window.location.href = 'theaterList.html'; // Redirect back to movie list
+        window.location.href = 'theaterList.html'; 
         return;
     }
-
-    // Display movie details
-    // document.getElementById('movie-title').textContent = theaterDate.title;
-    // document.getElementById('movie-poster').src = theaterDate.poster;
-    // document.getElementById('movie-details').textContent = `${theaterDate.rating}% rating, ${theaterDate.votes} votes, Genre: ${theaterDate.genre}`;
-
-    // Fetch seat data for the selected movie
-    fetch(`http://localhost:8181/movies/seats?movieId=${theaterDate.movieId}`)
+    
+    // Fetch theaters for selected movie
+    fetch(`http://localhost:8181/api/v1/movie-service/seats?theaterId=${theaterData.theaterId}`)
         .then(response => response.json())
         .then(data => displaySeats(data))
         .catch(error => console.error('Error fetching seat data:', error));
@@ -70,11 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const bookingData = {
-            movieId: theaterDate.movieId, // Use the ID from theaterDate
+            movieId: theaterData.movieId, // Use the ID from theaterData
+            theaterId : theaterData.theaterId
             seats: selectedSeats
         };
 
-        fetch('http://localhost:8181/movies/bookSeats', {
+        fetch('http://localhost:8181/api/v1/movie-service/book-ticket', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -84,8 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => {
             if (response.ok) {
                 alert('Seats booked successfully!');
-                // Optionally, reload seats to reflect booking
-                fetch(`http://localhost:8181/movies/seats?movieId=${theaterDate.movieId}`)
+                fetch(`http://localhost:8181/api/v1/movie-service/seats?theaterId=${theaterData.theaterId}`)
                     .then(response => response.json())
                     .then(data => displaySeats(data))
                     .catch(error => console.error('Error fetching seat data:', error));

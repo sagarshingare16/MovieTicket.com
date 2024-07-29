@@ -48,12 +48,15 @@ public class UserRequestController {
         return Arrays.asList("Mumbai", "Delhi", "Bangalore", "Chennai");
     }
 
-    @PostMapping(value = "/add-movie")
-    public MovieInfo addMovie(@RequestPart MovieInfo movieInfo, @RequestPart MultipartFile poster){
+
+    @PostMapping(value = "/add-movie",consumes = "multipart/form-data")
+    public ResponseEntity<?> addMovie(@RequestPart("movieInfo") MovieInfo movieInfo,
+                                      @RequestPart("poster") MultipartFile poster){
+        System.out.println(movieInfo + " "+ poster);
         try {
-            return userRequestService.addMovie(movieInfo,poster);
+            return new ResponseEntity<>(userRequestService.addMovie(movieInfo,poster),HttpStatus.OK);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

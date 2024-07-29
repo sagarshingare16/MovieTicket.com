@@ -8,5 +8,6 @@ import java.util.List;
 @Data
 public class SeatBookingRequest {
     private Long theaterId;
+    private Long movieId;
     private List<SeatInfo> seatInfoList;
 }

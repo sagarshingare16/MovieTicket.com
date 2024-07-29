@@ -24,7 +24,5 @@ public class MovieInfo {
 
     private String posterName;
     private String posterType;
-    @Lob
-    @Column(name = "poster",length = 1000)
-    private byte[] poster;
+    private String posterPath;
 }

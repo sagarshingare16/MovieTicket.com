@@ -1,6 +1,6 @@
 const moviesContainer = document.getElementById('movie-container');
 
-fetch('http://localhost:8181/movies/all-movies')
+fetch('http://localhost:8181/api/v1/movie-service/movies')
     .then(response => response.json())
     .then(data => displayMovies(data))
     .catch(error => console.error('Error fetching movies:', error));

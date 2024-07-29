@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     fetchLocations();
 
     function fetchLocations() {
-        fetch('http://localhost:8181/movies/locations')
+        fetch('http://localhost:8181/api/v1/movie-service/locations')
             .then(response => response.json())
             .then(data => {
                 let dropdown = document.getElementById('locationDropdown');

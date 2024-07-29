@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -54,12 +55,30 @@ public class UserRequestServiceImpl implements UserRequestService{
         return "Seats booked successfully.";
     }
 
-    @Override
+    /*@Override
     public MovieInfo addMovie(MovieInfo movieInfo, MultipartFile poster) throws IOException {
         movieInfo.setPosterName(poster.getOriginalFilename());
         movieInfo.setPosterType(poster.getContentType());
         movieInfo.setPoster(poster.getBytes());
         return movieRepository.save(movieInfo);
+    }*/
+
+    @Override
+    public MovieInfo addMovie(MovieInfo movieInfo,MultipartFile posterImage) throws IOException {
+        String FOLDER_LOCATION = "C:\\Users\\sagar\\OneDrive\\Desktop\\MyFiles";
+        String posterPath = FOLDER_LOCATION + posterImage.getOriginalFilename();
+        movieInfo.setPosterName(posterImage.getOriginalFilename());
+        movieInfo.setPosterType(posterImage.getContentType());
+        movieInfo.setPosterPath(posterPath);
+
+        MovieInfo savedMovieInfo = movieRepository.save(movieInfo);
+
+        posterImage.transferTo(new File(posterPath));
+
+        return savedMovieInfo;
     }
 
+    /*public byte[] getMoviePoster(String movieTitle) {
+
+    }*/
 }

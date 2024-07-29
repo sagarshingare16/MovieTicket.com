@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface MovieRepository extends JpaRepository<MovieInfo,Long> {
 
+
 }

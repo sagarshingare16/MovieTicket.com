@@ -11,25 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     console.log(movieData.movieId);
 
-    // //Display movie details
+    // display movie details
     document.getElementById('movie-title').textContent = movieData.title;
     document.getElementById('movie-poster').src = movieData.poster;
     document.getElementById('movie-details').textContent = `${movieData.rating}% rating, ${movieData.votes} votes, Genre: ${movieData.genre}`;
 
-    // Fetch theater data based on movieId
-    // fetch(`http://localhost:8181/movies/theaters?movieId=${movieData.movieId}`)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         const theaterContainer = document.getElementById('theater-container');
-    //         data.theaters.forEach(theater => {
-    //             const li = document.createElement('li');
-    //             li.textContent = theater.theaterName;
-    //             theaterContainer.appendChild(li);
-    //         });
-    //     })
-    //     .catch(error => console.error('Error fetching theaters:', error));
-
-    fetch(`http://localhost:8181/movies/theaters?movieId=${movieData.movieId}`)
+    fetch(`http://localhost:8181/api/v1/movie-service/theaters?movieId=${movieData.movieId}`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
@@ -37,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return response.json();
     })
     .then(data => {
-        console.log(data); // Log the data to see its structure
+        console.log(data);
         const theaterContainer = document.getElementById('theater-container');
         
         if (!theaterContainer) {
@@ -58,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             li.addEventListener('click',function(event){
                 event.preventDefault();
-                localStorage.setItem('selectedTheter',JSON.stringify(theater));
+                localStorage.setItem('selectedTheater',JSON.stringify(theater));
                 window.location.href='booking.html';
             });
             a.href = `booking.html`; // Example URL for booking
