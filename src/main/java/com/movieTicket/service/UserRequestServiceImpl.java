@@ -28,6 +28,7 @@ public class UserRequestServiceImpl implements UserRequestService{
 
     @Override
     public List<MovieInfo> getAllMovies() {
+        System.out.println();
         return movieRepository.findAll();
     }
 
@@ -55,17 +56,9 @@ public class UserRequestServiceImpl implements UserRequestService{
         return "Seats booked successfully.";
     }
 
-    /*@Override
-    public MovieInfo addMovie(MovieInfo movieInfo, MultipartFile poster) throws IOException {
-        movieInfo.setPosterName(poster.getOriginalFilename());
-        movieInfo.setPosterType(poster.getContentType());
-        movieInfo.setPoster(poster.getBytes());
-        return movieRepository.save(movieInfo);
-    }*/
-
     @Override
     public MovieInfo addMovie(MovieInfo movieInfo,MultipartFile posterImage) throws IOException {
-        String FOLDER_LOCATION = "C:\\Users\\sagar\\OneDrive\\Desktop\\MyFiles";
+        String FOLDER_LOCATION = "http://localhost:8181/posters/";
         String posterPath = FOLDER_LOCATION + posterImage.getOriginalFilename();
         movieInfo.setPosterName(posterImage.getOriginalFilename());
         movieInfo.setPosterType(posterImage.getContentType());
