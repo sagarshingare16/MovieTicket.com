@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface SeatRepository extends JpaRepository<SeatInfo,Long> {
     List<SeatInfo> findByTheaterId(Long theaterId);
-    SeatInfo findByTheaterIdAndMovieIdAndRowNumberAndSeatNumber(Long theaterId, Long movieId, int rowNumber, int seatNumber);
+    SeatInfo findByTheaterIdAndMovieIdAndRowNumberAndSeatNumber(Long theaterId, Long movieId, String rowNumber, int seatNumber);
 }

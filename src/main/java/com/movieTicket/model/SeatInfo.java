@@ -15,7 +15,7 @@ public class SeatInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seatId;
     private boolean isOccupied;
-    private int rowNumber;
+    private String rowNumber;
     private int seatNumber;
     private Long theaterId;
     private Long movieId;

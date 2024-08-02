@@ -66,9 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const bookingData = {
             movieId: theaterData.movieId, // Use the ID from theaterData
-            theaterId : theaterData.theaterId
+            theaterId : theaterData.theaterId,
             seats: selectedSeats
         };
+        console.log(bookingData);
 
         fetch('http://localhost:8181/api/v1/movie-service/book-ticket', {
             method: 'POST',

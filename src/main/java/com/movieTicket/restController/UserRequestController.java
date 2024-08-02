@@ -34,7 +34,7 @@ public class UserRequestController {
     }
 
     @GetMapping("/seats")
-    public ResponseEntity<List<SeatInfo>> getSeatsByTheaterId(Long theaterId){
+    public ResponseEntity<List<SeatInfo>> getSeatsByTheaterId(@RequestParam("theaterId") Long theaterId){
         return new ResponseEntity<>(userRequestService.getSeatsByTheaterId(theaterId),HttpStatus.OK);
     }
 
